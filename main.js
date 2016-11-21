@@ -24,46 +24,60 @@ function split_image_name(url){
 
 
 function main(){
-    var zip = new JSZip();
-    var promises = [];
 
-    for (var i =0; i< test_images.length; i++){
-        var image_url = test_images[i];
-        console.log(image_url);
+    if(window.location.hash) {
+      // We come from oauth redirect
+      console.log(window.location.hash)
+      
+    } else {
+      // Normal behaviour
+      var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
+      var redirect_url = "http://www.thelostlib.com"
+      window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
+      
+      var zip = new JSZip();
+        var promises = [];
 
-        var promise = $.ajax({
-            url: image_url,
-            type: "GET",
-            //crossDomain: true,
-            //xhrFields: {cors: false},
-            dataType: 'binary',
-            processData: false
-        }).done(function(result){
-            console.log("Downloaded");
-        }).fail(function(result){
-            console.log("Failed");
-            console.log(result);
-        });
+        for (var i =0; i< test_images.length; i++){
+            var image_url = test_images[i];
+            console.log(image_url);
 
-        promises.push(promise);
-    }
+            var promise = $.ajax({
+                url: image_url,
+                type: "GET",
+                crossDomain: true,
+                xhrFields: {cors: false},
+                dataType: 'binary',
+                processData: false
+            }).done(function(result){
+                console.log("Downloaded");
+            }).fail(function(result){
+                console.log("Failed");
+                console.log(result);
+            });
 
-    Promise.all(promises)
-        .then(responses => {
-            // For each response (check names)
-            /*zip.file(split_image_name(image_url),
-                                imgData,
-                                {base64: true});*/
-            console.log(values);
-            // Then zip and show using saveAs
-            /*zip.generateAsync({type:"blob"})
-                .then(function(content) {
-                    // see FileSaver.js
-                    saveAs(content, "example.zip");
-                });*/
-          }, failure_reason => {
-            console.log("failed")
-            console.log(failure_reason)
-          });
+            promises.push(promise);
+        }
 
+        Promise.all(promises)
+            .then(responses => {
+                // For each response (check names)
+                /*zip.file(split_image_name(image_url),
+                                    imgData,
+                                    {base64: true});*/
+                console.log(values);
+                // Then zip and show using saveAs
+                /*zip.generateAsync({type:"blob"})
+                    .then(function(content) {
+                        // see FileSaver.js
+                        saveAs(content, "example.zip");
+                    });*/
+              }, failure_reason => {
+                console.log("failed")
+                console.log(failure_reason)
+              });
+
+        }
+
+    
 }
