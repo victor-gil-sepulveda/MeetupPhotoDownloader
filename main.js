@@ -32,7 +32,7 @@ function main(){
     } else {
       // Normal behaviour
       var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
-      var redirect_url = "http://www.thelostlib.com"
+      var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
       window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
       
       var zip = new JSZip();
