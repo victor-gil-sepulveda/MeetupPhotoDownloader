@@ -41,7 +41,8 @@ function main(){
       console.log(parse_fragment(window.location));
       
       
-    } else {
+    } 
+    else {
       // Normal behaviour
       var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
       var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
@@ -86,9 +87,7 @@ function main(){
               }, failure_reason => {
                 console.log("failed")
                 console.log(failure_reason)
-              });
+              });*/
 
-        }*/
-
-    
+        }
 }
