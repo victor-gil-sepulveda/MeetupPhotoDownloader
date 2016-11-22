@@ -70,7 +70,7 @@ function get_links_from_photo_response(photo_response, res_type){
 
     for (i in photo_response){
         photo_links.push({
-            "link": photo_response[i][res_type],
+            "url": photo_response[i][res_type],
             "id": photo_response[i].id,
             "author": (typeof photo_response[i].member.name === 'undefined') ? "Unknown" : photo_response[i].member.name
         });
@@ -83,14 +83,22 @@ function get_links_from_photo_response(photo_response, res_type){
     Returns a promise that, when done, will contain the blob
     representing the downloaded image.
 */
-function download_photo(photo_url){
+function download_photo(photo, zip_file){
     return $.ajax({
-            url: photo_url,
+            url: photo.url,
             type: "GET",
             crossDomain: true,
             xhrFields: {cors: false},
             dataType: 'binary',
             processData: false
+    })
+    .done(function(result){
+        var photo_file_name = photo.author+"_"+split_image_name(photo.url);
+        zip_file.file(photo_file_name, result, {base64: true});
+    })
+    .fail(function(result){
+        console.log("Failed");
+        console.log(result);
     });
 }
 
@@ -111,13 +119,26 @@ function main(){
     var photos = get_links_from_photo_response(test_photo_response, photo_size.HIGH_RES);
     console.log(photos);
 
-    download_photo(test_photo_url).done(
-        function(result){
+    var zip_file = new JSZip();
+    var promises = [];
+    for (var i = 0; i < 5; i++){
+        promises.push(download_photo(photos[i], zip_file));
+    }
+
+    Promise.all(promises)
+        .then(result => {
             console.log(result);
-            var zip = new JSZip();
-            zip.file("test", result, {base64: true});
-        }
-    );
+            zip_file.generateAsync({type:"blob"})
+               .then(function(content) {
+                    // see FileSaver.js
+                    saveAs(content, "photos.zip");
+                    console.log("saveAs(content, 'photos.zip');");
+               });
+        },
+        failure_reason => {
+            console.log("failed");
+            console.log(failure_reason);
+        });
     return;
 
     if(window.location.hash) {
