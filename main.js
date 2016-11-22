@@ -40,7 +40,7 @@ function main(){
       var has_response = parse_fragment(window.location.href);
       var events_url = "https://api.meetup.com/self/events/";
       $.ajax({
-            url: image_url,
+            url: events_url,
             type: "GET",
             dataType: 'json',
             processData: true,
