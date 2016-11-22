@@ -37,7 +37,7 @@ function main(){
     if(window.location.hash) {
       // We come from oauth redirect
       console.log(parse_fragment(window.location.href));
-      var has_response = parse_fragment(window.location.href);
+      var hash_response = parse_fragment(window.location.href);
       var events_url = "https://api.meetup.com/self/events/";
       $.ajax({
             url: events_url,
