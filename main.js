@@ -9,12 +9,6 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var JSZip = require("jszip");
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-var test_images = [
-    "http://drawingimage.com/files/1/Robot-Art.jpg",
-    "http://pad3.whstatic.com/images/thumb/c/ca/Draw-a-Robot-Step-6-Version-2.jpg/aid753954-728px-Draw-a-Robot-Step-6-Version-2.jpg",
-    "https://github.com/victor-gil-sepulveda/victor-gil-sepulveda.github.io/blob/master/theme/images/bitbucket.png?raw=true",
-    "https://victor-gil-sepulveda.github.io/theme/images/google-plus.png"
-]
 
 function split_image_name(url){
     return url.substr(url.lastIndexOf('/') + 1);
@@ -27,12 +21,104 @@ function parse_fragment(url){
     return hashObj;
 }
 
+function postprocess_events(events){
+    var filtered_events = [];
+    var filtered_event = null;
+    var event = null;
+    for (var i=0; i < events.length; i++){
+        event = events[i];
+        filtered_event = { "group":{}, "event":{} };
+
+        filtered_event.group.id = event.group.id;
+        filtered_event.group.name = event.group.name;
+        filtered_event.group.urlname = event.group.urlname;
+
+        filtered_event.event.id = event.id;
+        filtered_event.event.link = event.link;
+        filtered_event.event.name = event.name;
+
+        filtered_events.push(filtered_event);
+    }
+    return filtered_events;
+}
+
+function group_by_event(events, property="id"){
+    var grouped_events = {}
+    for (var i=0; i < events.length; i++){
+        var event = events[i];
+        if (event.group[property] in grouped_events){
+            grouped_events[event.group[property]].push(event);
+        }
+        else{
+            grouped_events[event.group[property]] = [event];
+        }
+    }
+    return grouped_events;
+}
+
+
+test_photo_response
+
+var photo_size = {
+            "LOW_RES": "thumb_link",
+            "NORM_RES": "photo_link",
+            "HIGH_RES": "highres_link"
+            }
+
+function get_links_from_photo_response(photo_response, res_type){
+    var photo_links = [];
+
+    for (i in photo_response){
+        photo_links.push({
+            "link": photo_response[i][res_type],
+            "id": photo_response[i].id,
+            "author": (typeof photo_response[i].member.name === 'undefined') ? "Unknown" : photo_response[i].member.name
+        });
+    }
+
+    return photo_links;
+}
+
+/*
+    Returns a promise that, when done, will contain the blob
+    representing the downloaded image.
+*/
+function download_photo(photo_url){
+    return $.ajax({
+            url: photo_url,
+            type: "GET",
+            crossDomain: true,
+            xhrFields: {cors: false},
+            dataType: 'binary',
+            processData: false
+    });
+}
+
+var test_photo_url = 'http://photos2.meetupstatic.com/photos/event/9/d/d/e/highres_455980414.jpeg';
+
 function main(){
 
     // dummy response
     /*var test_url = "www.test.html#access_token=2a77f011f8a0726e046ed60c2b568810&token_type=bearer&expires_in=3600"
     console.log(parse_fragment(test_url));*/
-    
+
+    var f_events = postprocess_events(test_events.data);
+    console.log(f_events);
+
+    var g_by_events = group_by_event(f_events, "name");
+    console.log(g_by_events);
+
+    var photos = get_links_from_photo_response(test_photo_response, photo_size.HIGH_RES);
+    console.log(photos);
+
+    download_photo(test_photo_url).done(
+        function(result){
+            console.log(result);
+            var zip = new JSZip();
+            zip.file("test", result, {base64: true});
+        }
+    );
+    return;
 
     if(window.location.hash) {
       // We come from oauth redirect
@@ -51,7 +137,7 @@ function main(){
             console.log("Failed");
             console.log(result);
         });
-      
+
     } 
     else {
       // Entry point
@@ -102,3 +188,5 @@ function main(){
 
         }
 }
+
+
