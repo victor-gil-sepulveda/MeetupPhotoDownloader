@@ -1,0 +1,27 @@
+{
+  "name": "meetup_photo_downloader",
+  "version": "0.1.0",
+  "description": "Tool to download albums from the meetup website.",
+  "main": "test_main.js",
+  "dependencies": {
+    "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "amdefine": "^1.0.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-gil-sepulveda/MeetupPhotoDownloader.git"
+  },
+  "author": "Victor Gil Sepulveda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victor-gil-sepulveda/MeetupPhotoDownloader/issues"
+  },
+  "homepage": "https://github.com/victor-gil-sepulveda/MeetupPhotoDownloader#readme"
+}
