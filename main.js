@@ -4,8 +4,6 @@ http://nodeguide.com/beginner.html
 
 Idea de como descargar las imagenes
 http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
-
-
 */
 
 //var JSZip = require("jszip");
@@ -39,11 +37,24 @@ function main(){
     if(window.location.hash) {
       // We come from oauth redirect
       console.log(parse_fragment(window.location.href));
-      
+      var has_response = parse_fragment(window.location.href);
+      var events_url = "https://api.meetup.com/self/events/";
+      $.ajax({
+            url: image_url,
+            type: "GET",
+            dataType: 'json',
+            processData: true,
+            data: {"access_token": hash_response.access_token}
+        }).done(function(result){
+            console.log(result);
+        }).fail(function(result){
+            console.log("Failed");
+            console.log(result);
+        });
       
     } 
     else {
-      // Normal behaviour
+      // Entry point
       var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
       var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
       window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
