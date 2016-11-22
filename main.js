@@ -22,12 +22,24 @@ function split_image_name(url){
     return url.substr(url.lastIndexOf('/') + 1);
 }
 
+function parse_fragment(url){
+    //http://stackoverflow.com/questions/4197591/parsing-url-hash-fragment-identifier-with-javascript
+    //mccambridge amswer
+    const hashObj = url.split('#')[1].split('&').reduce((prev, item) => Object.assign({[item.split('=')[0]]: item.split('=')[1]}, prev), {});
+    return hashObj;
+}
 
 function main(){
 
+    // dummy response
+    /*var test_url = "www.test.html#access_token=2a77f011f8a0726e046ed60c2b568810&token_type=bearer&expires_in=3600"
+    console.log(parse_fragment(test_url));*/
+    
+
     if(window.location.hash) {
       // We come from oauth redirect
-      console.log(window.location.hash)
+      console.log(parse_fragment(window.location));
+      
       
     } else {
       // Normal behaviour
@@ -35,7 +47,7 @@ function main(){
       var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
       window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
       
-      var zip = new JSZip();
+      /*var zip = new JSZip();
         var promises = [];
 
         for (var i =0; i< test_images.length; i++){
@@ -62,22 +74,21 @@ function main(){
         Promise.all(promises)
             .then(responses => {
                 // For each response (check names)
-                /*zip.file(split_image_name(image_url),
-                                    imgData,
-                                    {base64: true});*/
+                //zip.file(split_image_name(image_url), imgData, {base64: true});
+                
                 console.log(values);
                 // Then zip and show using saveAs
-                /*zip.generateAsync({type:"blob"})
+                zip.generateAsync({type:"blob"})
                     .then(function(content) {
                         // see FileSaver.js
                         saveAs(content, "example.zip");
-                    });*/
+                    });
               }, failure_reason => {
                 console.log("failed")
                 console.log(failure_reason)
               });
 
-        }
+        }*/
 
     
 }
