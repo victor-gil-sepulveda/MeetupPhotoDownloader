@@ -38,7 +38,7 @@ function main(){
 
     if(window.location.hash) {
       // We come from oauth redirect
-      console.log(parse_fragment(window.location));
+      console.log(parse_fragment(window.location.href));
       
       
     } 
