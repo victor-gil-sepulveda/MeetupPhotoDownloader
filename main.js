@@ -42,7 +42,7 @@ function main(){
       $.ajax({
             url: events_url,
             type: "GET",
-            dataType: 'json',
+            dataType: 'jsonp',
             processData: true,
             data: {"access_token": hash_response.access_token}
         }).done(function(result){
