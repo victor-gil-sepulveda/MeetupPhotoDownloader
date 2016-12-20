@@ -1,5 +1,6 @@
 var expect = require('chai').expect
 var url_tools = require("../js/url.tools.js")
+var tools = require("../js/tools.js")
 
 describe('split_image_name function', function() {
 
@@ -49,4 +50,15 @@ describe('parse_fragment function', function() {
     });
 
 });
+
+describe('normalize_name test, from tools', function() {
+    it('should get a clean name', function(){
+        var name = "Víctor Gil Sepúlveda";
+        var result = tools.normalize_name(name);
+        var expected_name = "Vctor_Gil_Seplveda";
+        expect(result).to.be.equal(expected_name);
+    });
+});
+
+
 

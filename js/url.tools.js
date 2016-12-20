@@ -23,7 +23,7 @@ define( function(require) {
         };
 
         return {
-            "split_image_name":split_image_name,
-            "parse_fragment":parse_fragment
+            "split_image_name": split_image_name,
+            "parse_fragment": parse_fragment
         };
 });
