@@ -8,7 +8,6 @@
 
         <title>One Page HTML Templates Websites</title>
 
-        <script type="text/javascript" src="lib/require.js"></script>
         <script type="text/javascript" src="lib/jszip.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="lib/jquery.binarytransport.js"></script>
@@ -16,8 +15,11 @@
         <script type="text/javascript" src="js/tools.js"></script>
         <script type="text/javascript" src="js/url.tools.js"></script>
         <script type="text/javascript" src="js/meetup.tools.js"></script>
-        <script type="text/javascript" src="main.js"></script>
 
+        <script data-main="main" src="lib/require.js"></script>
+        <!--
+        <script type="text/javascript" src="main.js"></script>
+        -->
         <script>
             $(document).ready(function(){
                     main();
