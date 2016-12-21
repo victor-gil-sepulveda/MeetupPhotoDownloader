@@ -40,14 +40,17 @@ define(["./tools.js"], function(tools) {
         return grouped_events;
     }
 
-    function get_links_from_photo_response(photo_response, res_type){
+    function get_links_from_photo_response(photo_response, resolution){
 
         var photo_response_data = photo_response.data;
         var photo_links = [];
 
+        console.log(photo_response_data.length)
+        console.log(photo_response_data)
+
         for (i in photo_response_data){
             photo_links.push({
-                "url": photo_response_data[i][res_type],
+                "url": photo_response_data[i][resolution],
                 "id": photo_response_data[i].id,
                 "author": (typeof photo_response_data[i].member.name === 'undefined') ?
                             "Unknown" :
