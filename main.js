@@ -64,12 +64,12 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                                 chosen_url_name+
                                 "/events/"+
                                 chosen_event_id+
-                                "/photos?&sign=true&photo-host=public&page=0"
+                                "/photos"//?&sign=true&photo-host=public&page=0"
 
                 $.ajax({
                         url: photo_url,
                         type: "GET",
-                        dataType: 'json',
+                        dataType: 'jsonp',
                         processData: true,
                         data: {
                             "access_token": hash_response.access_token,
