@@ -58,29 +58,56 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 var g_by_events = process_event_response(result);
                 console.log(g_by_events);
 
-                /*var photos = meetup.get_links_from_photo_response(test_photo_response, photo_size.HIGH_RES);
-                console.log(photos);
+                var chosen_event_id = "235422275";
+                var chosen_url_name = "BarcelonaHikingGroup";
+                var photo_url = "https://api.meetup.com/"+
+                                chosen_url_name+
+                                "/events/"+
+                                chosen_event_id+
+                                "/photos?&sign=true&photo-host=public&page=0"
 
-                var zip_file = new JSZip();
-                var promises = [];
-                for (var i = 0; i < 5; i++){
-                    promises.push(download_photo(photos[i], zip_file));
-                }
+                $.ajax({
+                        url: photo_url,
+                        type: "GET",
+                        dataType: 'json',
+                        processData: true,
+                        data: {
+                            "access_token": hash_response.access_token,
+                            "page": 0
+                        }
+                })
+                .done(function(result){
+                    var photos = meetup.get_links_from_photo_response(result,
+                                photo_size.HIGH_RES);
+                    console.log(photos);
 
-                Promise.all(promises)
-                    .then(result => {
-                        console.log(result);
-                        zip_file.generateAsync({type:"blob"})
-                           .then(function(content) {
-                                // see FileSaver.js
-                                saveAs(content, "photos.zip");
-                                console.log("saveAs(content, 'photos.zip');");
-                           });
-                    },
-                    failure_reason => {
-                        console.log("failed");
-                        console.log(failure_reason);
-                    });*/
+                    var zip_file = new JSZip();
+                    var promises = [];
+                    for (var i = 0; i < 5; i++){
+                        promises.push(download_photo(photos[i], zip_file));
+                    }
+
+                    Promise.all(promises)
+                        .then(result => {
+                            console.log(result);
+                            zip_file.generateAsync({type:"blob"})
+                               .then(function(content) {
+                                    // see FileSaver.js
+                                    saveAs(content, "photos.zip");
+                                    console.log("saveAs(content, 'photos.zip');");
+                               });
+                        },
+                        failure_reason => {
+                            console.log("failed");
+                            console.log(failure_reason);
+                        });
+                })
+                .fail(function(result){
+                    console.log("Failed photo data request");
+                    console.log(result);
+                });
+
+                /**/
 
             }).fail(function(result){
                 console.log("Failed");
@@ -97,7 +124,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     }
 
     $(document).ready(function(){
-        console.log("main is loaded")
+        console.log("Main loaded")
         main();
     });
 
