@@ -243,7 +243,7 @@ define( function(require) {
     };
 
     var test_photo_response = {
-
+        "meta":{},"data":{
         "0": {
             "id": 455980414,
             "highres_link": "http://photos2.meetupstatic.com/photos/event/9/d/d/e/highres_455980414.jpeg",
@@ -3595,7 +3595,7 @@ define( function(require) {
                 }
             }
         }
-
+    }
     };
 
     var filtered_event_data =

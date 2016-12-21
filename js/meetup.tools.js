@@ -41,15 +41,17 @@ define(["./tools.js"], function(tools) {
     }
 
     function get_links_from_photo_response(photo_response, res_type){
+
+        var photo_response_data = photo_response.data;
         var photo_links = [];
 
-        for (i in photo_response){
+        for (i in photo_response_data){
             photo_links.push({
-                "url": photo_response[i][res_type],
-                "id": photo_response[i].id,
-                "author": (typeof photo_response[i].member.name === 'undefined') ?
+                "url": photo_response_data[i][res_type],
+                "id": photo_response_data[i].id,
+                "author": (typeof photo_response_data[i].member.name === 'undefined') ?
                             "Unknown" :
-                            tools.normalize_name(photo_response[i].member.name)
+                            tools.normalize_name(photo_response_data[i].member.name)
             });
         }
 
