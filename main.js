@@ -77,6 +77,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                         }
                 })
                 .done(function(result){
+                    console.log(result)
                     var photos = meetup.get_links_from_photo_response(result,
                                 meetup.photo_size.HIGH_RES);
                     console.log(photos);
