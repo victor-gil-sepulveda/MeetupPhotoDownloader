@@ -36,8 +36,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     }
 
     function process_event_response(result){
-        var f_events = filter_events(result);
-        var g_by_events = group_by_event(f_events, "name");
+        var f_events = meetup.filter_events(result);
+        var g_by_events = meetup.group_by_event(f_events, "name");
 
         return g_by_events;
     }
@@ -58,7 +58,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 var g_by_events = process_event_response(result);
                 console.log(g_by_events);
 
-                /*var photos = get_links_from_photo_response(test_photo_response, photo_size.HIGH_RES);
+                /*var photos = meetup.get_links_from_photo_response(test_photo_response, photo_size.HIGH_RES);
                 console.log(photos);
 
                 var zip_file = new JSZip();
