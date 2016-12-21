@@ -10,7 +10,7 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 
-requirejs(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
+require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
     function download_photo(photo, zip_file){
     /*
@@ -89,12 +89,16 @@ requirejs(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools)
 
         }
         else {
-            // Entry point
+            // Main Entry point
             var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
             var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
             window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
         }
     }
 
+    $(document).ready(function(){
+        console.log("main is loaded")
+        main();
+    });
 
 });

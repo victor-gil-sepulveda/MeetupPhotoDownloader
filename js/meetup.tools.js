@@ -2,8 +2,7 @@ if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
 
-define(function(require) {
-    var tools = require("./tools.js");
+define(["./tools.js"], function(tools) {
 
     function filter_events(event_response){
         var events = event_response.data;
