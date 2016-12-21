@@ -84,7 +84,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
                     var zip_file = new JSZip();
                     var promises = [];
-                    for (var i = 0; i < 5; i++){
+                    for (var i = 0; i < photos.length; i++){
                         promises.push(download_photo(photos[i], zip_file));
                     }
 
