@@ -32,12 +32,12 @@
         <!-- Chitika adds -->
         <script type="text/javascript">
           ( function() {
-            if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-            var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
-            var placement_id = window.CHITIKA.units.length;
-            window.CHITIKA.units.push(unit);
-            document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-        }());
+                if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+                var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
+                var placement_id = window.CHITIKA.units.length;
+                window.CHITIKA.units.push(unit);
+                document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+            }());
         </script>
         <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 
@@ -73,7 +73,6 @@
                 background-color: #FF0000;
                 border-color: #FF0000;
             }
-
 
             .is-disabled {
                 opacity: .5;
@@ -121,12 +120,12 @@
             <div class="row">
                 <div class="five columns" > <p></p></div>
                 <div class="two columns" >
-                    <button class="button-primary">Meetup</button>
+                    <button class="button-primary" id="meetup_login_button">Meetup</button>
                 </div>
                 <div class="five columns" > <p></p></div>
             </div>
 
-            <div class="row is-disabled">
+            <div class="row is-disabled step_two" >
                 <div class="twelve columns" >
                     <h4> <span class="numbered_header">2nd step:</span> Choose a group</h4>
                     <p>
@@ -135,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="row is-disabled">
+            <div class="row is-disabled step_two" >
                 <div class="six columns" >
                     <table class="u-full-width">
                         <thead>

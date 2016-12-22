@@ -43,9 +43,14 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     }
 
     function main(){
+
         if(window.location.hash) {
+
+            // Display step 2
+             $(".step_two).removeClass("is-disabled")
+
             // We come from oauth redirect
-            var hash_response = url_tools.parse_fragment(window.location.href);
+            /*var hash_response = url_tools.parse_fragment(window.location.href);
             var events_url = "https://api.meetup.com/self/events/";
             $.ajax({
                 url: events_url,
@@ -111,23 +116,23 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
             }).fail(function(result){
                 console.log("Failed");
                 console.log(result);
-            });
+            });*/
 
-        }
-        else {
-            // Main Entry point
-            var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
-            var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
-            window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
         }
     }
 
     $(document).ready(function(){
         console.log("Main loaded")
 
-        $( "#do_something" ).click(function() {
-          main();
+        $( "#meetup_login_button" ).click(function() {
+            // Main Entry point
+            var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
+            var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
+            window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
+            $(this).addClass("is-disabled")
         });
+
+        main();
     });
 
 });
