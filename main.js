@@ -50,7 +50,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
              $(".step_two").removeClass("is-disabled")
 
             // We come from oauth redirect
-            /*var hash_response = url_tools.parse_fragment(window.location.href);
+            var hash_response = url_tools.parse_fragment(window.location.href);
             var events_url = "https://api.meetup.com/self/events/";
             $.ajax({
                 url: events_url,
@@ -58,12 +58,19 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 dataType: 'jsonp',
                 processData: true,
                 data: {"access_token": hash_response.access_token}
-            }).done(function(result){
-
+            })
+            .done(function(result){
                 var g_by_events = process_event_response(result);
-                console.log(g_by_events);
+                for(var group_id in g_by_events){
+                    $("groups_table").append("<div>"+g_by_events[group_id].group.name"</div>");
+                }
+            })
+            .fail(function(result){
+                console.log("Failed gathering group info");
+                console.log(result);
+            });
 
-                var chosen_event_id = "235422275";
+            /*    var chosen_event_id = "235422275";
                 var chosen_url_name = "BarcelonaHikingGroup";
                 var photo_url = "https://api.meetup.com/"+
                                 chosen_url_name+
@@ -113,10 +120,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     console.log(result);
                 });
 
-            }).fail(function(result){
-                console.log("Failed");
-                console.log(result);
-            });*/
+            */
 
         }
     }
