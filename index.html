@@ -6,9 +6,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>One Page HTML Templates Websites</title>
+        <title>Meetup Photo Downloader</title>
 
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro" rel="stylesheet">
+        <!--
 
+    font-family: 'Pacifico', cursive;
+
+    font-family: 'Source Sans Pro', sans-serif;
+
+ -->
+        <!-- CSS styles -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
 
@@ -20,18 +29,65 @@
         <script type="text/javascript" src="lib/FileSaver.js"></script>
         <script data-main = "main.js" src="lib/require.js"></script>
 
-        <!--
-        <script type="text/javascript" src="main.js"></script>
-        <script type="text/javascript" src="js/tools.js"></script>
-        <script type="text/javascript" src="js/url.tools.js"></script>
-        <script type="text/javascript" src="js/meetup.tools.js"></script>
-        -->
+        <!-- Chitika adds -->
+        <script type="text/javascript">
+          ( function() {
+            if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+            var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
+            var placement_id = window.CHITIKA.units.length;
+            window.CHITIKA.units.push(unit);
+            document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        }());
+        </script>
+        <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+
+        <style>
+            .numbered_header {
+                color: #FF0000;
+            }
+
+            h4 {
+                font-family: 'Pacifico', cursive;
+            }
+
+            h4::first-letter {
+                font-size: 200%;
+            }
+
+            p {
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 140%;
+            }
+
+            button.button-primary{
+                font-family: 'Pacifico', cursive;
+                text-transform: none;
+                font-size: 140%;
+                color: #FF0000;
+                background-color: #FFFFFF;
+                border-color: #FF0000;
+            }
+
+            button.button-primary:hover{
+                color: #FFFFFF;
+                background-color: #FF0000;
+                border-color: #FF0000;
+            }
+
+
+            .is-disabled {
+                opacity: .5;
+                pointer-events: none;
+                filter: grayscale(50%);
+            }
+
+        </style>
     </head>
-    <body >
+
+    <body>
         <div class="container">
             <div class="row">
-
-                <div class="twelve columns" >
+               <div class="twelve columns" >
                     <picture>
                         <source srcset="img/header.big.png" media="(min-width: 1000px)">
                         <source srcset="img/header.med.png" media="(min-width: 540px)">
@@ -39,12 +95,95 @@
 
                         <img src="img/header.med.png"
                             alt="Meetup Photo Downloader"
-                            style="width:100%;"
+                            style="width:100%;margin-bottom:40px;margin-top:40px;"
                         >
                     </picture>
                 </div>
-
             </div>
-        </div>
+
+            <div class="row" style="margin-bottom:40px;">
+                <div class="two columns" > <p></p></div>
+                <div class="eight columns" style="background-color:#9ae060;height:100px;">
+                    Anuncio
+                </div>
+                <div class="two columns" ></div>
+            </div>
+
+            <div class="row">
+                <div class="twelve columns" >
+                    <h4><span class="numbered_header">1st Step:</span> Meetup login</h4>
+                    <p>
+                        You need to give access permission to this app so that it can download the photos for you.
+                        Please, click the button below to log in.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="five columns" > <p></p></div>
+                <div class="two columns" >
+                    <button class="button-primary">Meetup</button>
+                </div>
+                <div class="five columns" > <p></p></div>
+            </div>
+
+            <div class="row is-disabled">
+                <div class="twelve columns" >
+                    <h4> <span class="numbered_header">2nd step:</span> Choose a group</h4>
+                    <p>
+                        Choose the group and event from which you want to download the photos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row is-disabled">
+                <div class="six columns" >
+                    <table class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th>Groups</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="six columns" >
+                    <table class="u-full-width">
+                        <thead>
+                        <tr>
+                            <th>Events</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row is-disabled">
+                <div class="twelve columns" >
+                    <h4><span class="numbered_header">3rd Step:</span> Get your photos! </h4>
+                    <p>
+                        Click the download button to download a nice zip file containing
+                        all the photos you wanted. Note that downloading and packing the photos
+                        can take a long time. Please, be patient!!
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row is-disabled">
+                <div class="five columns" > <p></p></div>
+                <div class="two columns" >
+                    <button class="button-primary">Download</button>
+                </div>
+                <div class="five columns" > <p></p></div>
+            </div>
     </body>
 </html>
