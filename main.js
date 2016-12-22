@@ -47,7 +47,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         if(window.location.hash) {
 
             // Display step 2
-             $(".step_two).removeClass("is-disabled")
+             $(".step_two").removeClass("is-disabled")
 
             // We come from oauth redirect
             /*var hash_response = url_tools.parse_fragment(window.location.href);
