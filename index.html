@@ -4,15 +4,20 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>One Page HTML Templates Websites</title>
 
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="lib/prefix-free.min.js"></script>
         <script type="text/javascript" src="lib/jszip.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="lib/jquery.binarytransport.js"></script>
         <script type="text/javascript" src="lib/FileSaver.js"></script>
-
         <script data-main = "main.js" src="lib/require.js"></script>
 
         <!--
@@ -23,5 +28,23 @@
         -->
     </head>
     <body >
+        <div class="container">
+            <div class="row">
+
+                <div class="twelve columns" >
+                    <picture>
+                        <source srcset="img/header.big.png" media="(min-width: 1000px)">
+                        <source srcset="img/header.med.png" media="(min-width: 540px)">
+                        <source srcset="img/header.sma.png" media="(min-width: 0px)">
+
+                        <img src="img/header.med.png"
+                            alt="Meetup Photo Downloader"
+                            style="width:100%;"
+                        >
+                    </picture>
+                </div>
+
+            </div>
+        </div>
     </body>
 </html>

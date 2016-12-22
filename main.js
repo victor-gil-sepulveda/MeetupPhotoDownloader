@@ -124,7 +124,10 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
     $(document).ready(function(){
         console.log("Main loaded")
-        main();
+
+        $( "#do_something" ).click(function() {
+          main();
+        });
     });
 
 });
