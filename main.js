@@ -63,7 +63,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 var g_by_events = process_event_response(result);
                 for(var group_id in g_by_events){
                     $("groups_table").append("<div>"+
-                        sg_by_events[group_id][0].group.name+
+                        g_by_events[group_id][0].group.name+
                         "</div>");
                 }
             })
