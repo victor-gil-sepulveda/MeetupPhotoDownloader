@@ -65,15 +65,17 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
                 $("#groups_table").empty();
                 var i = 0;
-                $("#groups_table").append("<hr>");
+                $("#groups_table").append("<hr class='info_cell_line'>");
                 for(var group_id in g_by_events){
                     $("#groups_table").append(
-                        "<div class='group_name selectable_info_cell' data-groupid='" + group_id+"'><p>"+
+                        "<div class='group_cell selectable_info_cell' data-groupid='" + group_id+"'><p>"+
                         g_by_events[group_id][0].group.name+
                         "</p></div><hr class='info_cell_line'>");
                 }
                 // Then add the callback for clicks
-                $( ".group_name" ).click(function(){
+                $( ".group_cell" ).click(function(){
+                    $(this).removeClass().addClass('selected');
+
                     var group_id = $(this).attr('data-groupid');
                     console.log(g_by_events)
                     console.log(group_id)
@@ -81,10 +83,10 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     console.log(event_list)
                     // Remove all content from the list
                     $("#events_table").empty();
-                    $("#events_table").append("<hr>");
+                    $("#events_table").append("<hr class='info_cell_line'>");
                     for(var i = 0; i< event_list.length; i++){
                         $("#events_table").append(
-                            "<div class='group_name' data-eventid='" +
+                            "<div class='event_cell selectable_info_cell' data-eventid='" +
                             event_list[i].event.id+"' data-urlname='"+
                             event_list[i].group.urlname+"'><p>"+
                             g_by_events[group_id][i].event.name+
