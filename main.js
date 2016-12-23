@@ -66,9 +66,10 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 $("#groups_table").empty();
                 for(var group_id in g_by_events){
                     $("#groups_table").append(
-                        "<div class='group_name' data-groupid='" + group_id+"'>"+
+                        "<div class='group_name' data-groupid='" + group_id+"'><p>"+
                         g_by_events[group_id][0].group.name+
-                        "</div>");
+                        "</p></div>");
+
                 }
                 // Then add the callback for clicks
                 $( ".group_name" ).click(function(){
@@ -81,9 +82,11 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     $("#events_table").empty();
                     for(var i = 0; i< event_list.length; i++){
                         $("#events_table").append(
-                            "<div class='group_name' event_id='" + group_id+"'>"+
+                            "<div class='group_name' data-eventid='" +
+                            event_list.[i].event.id+"' data-urlname='"+
+                            event_list.[i].group.urlname+"'><p>"+
                             g_by_events[group_id][i].event.name+
-                            "</div>");
+                            "</p></div>");
                     }
                 });
             })

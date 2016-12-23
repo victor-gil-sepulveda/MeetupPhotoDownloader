@@ -3,3 +3,6 @@ npm install
 then 
 
 npm test
+
+Testing the visual part and related logic is more complicated (interactions with meetup etc)
+
