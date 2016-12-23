@@ -74,7 +74,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 }
                 // Then add the callback for clicks
                 $( ".group_cell" ).click(function(){
-                    $(this).removeClass().addClass('selected');
+                    $( ".group_cell" ).removeClass('selected');
+                    $(this).addClass('selected');
 
                     var group_id = $(this).attr('data-groupid');
                     console.log(g_by_events)
@@ -90,8 +91,13 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                             event_list[i].event.id+"' data-urlname='"+
                             event_list[i].group.urlname+"'><p>"+
                             g_by_events[group_id][i].event.name+
-                            "</p></div><hr>");
+                            "</p></div><hr class='info_cell_line'>");
                     }
+
+                    $( ".event_cell" ).click(function(){
+                        $( ".event_cell" ).removeClass('selected');
+                        $(this).addClass('selected');
+                    });
                 });
             })
             .fail(function(result){
