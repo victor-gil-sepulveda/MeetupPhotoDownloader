@@ -74,6 +74,24 @@
                 filter: grayscale(50%);
             }
 
+            .selectable_info_cell > p{
+                font-size: 100%;
+                margin: 0px 0px 0px 0px;
+            }
+
+            .selectable_info_cell:hover {
+                   background-color: #ef9694;
+            }
+
+            .selectable_info_cell.selected {
+                background-color: #ef9694;
+            }
+
+            .info_cell_line{
+                margin: 5px 0px 0px 5px;
+            }
+
+
         </style>
     </head>
 
@@ -134,10 +152,16 @@
                     <p><b>Groups</b></p>
                     <div style="overflow:auto; max-height: 200px;" id="groups_table">
                         <div> <p>Test</p></div>
-                        <hr>
+                        <hr class="info_cell_line">
+                        <div class="selectable_info_cell"> <p>Test 2</p></div><hr>
+                        <hr class="info_cell_line">
+
                         <div> <p>Test 2</p></div><hr>
+                        <hr class="info_cell_line">
+
                         <div> <p>Test 2</p></div><hr>
-                        <div> <p>Test 2</p></div><hr>
+                        <hr class="info_cell_line">
+
                         <div> <p>Test 2</p></div>
                     </div>
                 </div>

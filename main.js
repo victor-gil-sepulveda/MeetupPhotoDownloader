@@ -68,9 +68,9 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 $("#groups_table").append("<hr>");
                 for(var group_id in g_by_events){
                     $("#groups_table").append(
-                        "<div class='group_name' data-groupid='" + group_id+"'><p>"+
+                        "<div class='group_name selectable_info_cell' data-groupid='" + group_id+"'><p>"+
                         g_by_events[group_id][0].group.name+
-                        "</p></div><hr>");
+                        "</p></div><hr class='info_cell_line'>");
                 }
                 // Then add the callback for clicks
                 $( ".group_name" ).click(function(){
