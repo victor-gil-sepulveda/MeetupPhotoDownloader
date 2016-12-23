@@ -83,8 +83,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     for(var i = 0; i< event_list.length; i++){
                         $("#events_table").append(
                             "<div class='group_name' data-eventid='" +
-                            event_list.[i].event.id+"' data-urlname='"+
-                            event_list.[i].group.urlname+"'><p>"+
+                            event_list[i].event.id+"' data-urlname='"+
+                            event_list[i].group.urlname+"'><p>"+
                             g_by_events[group_id][i].event.name+
                             "</p></div>");
                     }
