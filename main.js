@@ -61,13 +61,26 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
             })
             .done(function(result){
                 var g_by_events = process_event_response(result);
-                console.log(g_by_events)
+                $("#groups_table").empty();
                 for(var group_id in g_by_events){
-                    console.log(g_by_events[group_id][0].group.name)
-                    $("#groups_table").append("<div>"+
+                    $("#groups_table").append(
+                        "<div class='group_name' group_id='" + group_id+"'>"+
                         g_by_events[group_id][0].group.name+
                         "</div>");
                 }
+                // Then add the callback for clicks
+                $( ".group_name" ).click(function(){
+                    var group_id = $('#test').attr('group_id');
+                    var event_list = g_by_events[group_id];
+                    // Remove all content from the list
+                    $("#events_table").empty();
+                    for(var i = 0; i< event_list.length; i++){
+                        $("#events_table").append(
+                            "<div class='group_name' event_id='" + group_id+"'>"+
+                            g_by_events[group_id][i].event.name+
+                            "</div>");
+                    }
+                });
             })
             .fail(function(result){
                 console.log("Failed gathering group info");
