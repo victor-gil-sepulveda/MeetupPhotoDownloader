@@ -37,7 +37,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
     function process_event_response(result){
         var f_events = meetup.filter_events(result);
-        var g_by_events = meetup.group_by_event(f_events, "name");
+        var g_by_events = meetup.group_by_event(f_events, "id");
 
         return g_by_events;
     }
@@ -61,6 +61,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
             })
             .done(function(result){
                 var g_by_events = process_event_response(result);
+
+
                 $("#groups_table").empty();
                 for(var group_id in g_by_events){
                     $("#groups_table").append(
