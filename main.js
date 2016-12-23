@@ -66,13 +66,13 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 $("#groups_table").empty();
                 for(var group_id in g_by_events){
                     $("#groups_table").append(
-                        "<div class='group_name' group_id='" + group_id+"'>"+
+                        "<div class='group_name' data-groupid='" + group_id+"'>"+
                         g_by_events[group_id][0].group.name+
                         "</div>");
                 }
                 // Then add the callback for clicks
                 $( ".group_name" ).click(function(){
-                    var group_id = $('#test').attr('group_id');
+                    var group_id = $(this).attr('data-groupid');
                     console.log(g_by_events)
                     console.log(group_id)
                     var event_list = g_by_events[parseInt(group_id)];
