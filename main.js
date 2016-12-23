@@ -75,6 +75,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     var group_id = $('#test').attr('group_id');
                     console.log(g_by_events)
                     var event_list = g_by_events[group_id];
+                    console.log(event_list)
                     // Remove all content from the list
                     $("#events_table").empty();
                     for(var i = 0; i< event_list.length; i++){
