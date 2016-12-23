@@ -71,6 +71,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 // Then add the callback for clicks
                 $( ".group_name" ).click(function(){
                     var group_id = $('#test').attr('group_id');
+                    console.log(g_by_events)
                     var event_list = g_by_events[group_id];
                     // Remove all content from the list
                     $("#events_table").empty();
