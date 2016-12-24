@@ -129,12 +129,11 @@ require([   "js/meetup.tools.js",
         }
     }
 
-
     /*
         Returns a promise that, when done, will contain the blob
         representing the downloaded image.
     */
-    function download_photo(photo, zip_file){
+    function download_photo(photo, zip_file, progress_bar, fraction){
         return $.ajax({
                 url: photo.url,
                 type: "GET",
@@ -146,6 +145,7 @@ require([   "js/meetup.tools.js",
         .done(function(result){
             var photo_file_name = photo.author+"_"+ url_tools.split_image_name(photo.url);
             zip_file.file(photo_file_name, result, {base64: true});
+            progress_bar.animate(progress_bar.value()+fraction)
         })
         .fail(function(result){
             console.log("Failed");
@@ -200,13 +200,12 @@ require([   "js/meetup.tools.js",
         }
 
         // else, download them
-        do_progress();
-        return;
+        var progress_bar = do_progress();
 
         var zip_file = new JSZip();
         var promises = [];
         for (var i = 0; i < photos.length; i++){
-            promises.push(download_photo(photos[i], zip_file));
+            promises.push(download_photo(photos[i], zip_file, progress_bar, 1/number_of_photos));
         }
 
         Promise.all(promises)
@@ -255,6 +254,7 @@ require([   "js/meetup.tools.js",
             bar.setText(Math.round(bar.value() * 100) + ' %');
           }
         });
+        return bar;
 
     }
 
