@@ -93,6 +93,11 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
             // We come from oauth redirect
             var hash_response = url_tools.parse_fragment(window.location.href);
 
+            // Prepare the download button
+            $( "#get_photos_button" ).click(function() {
+                get_photos(hash_response);
+            });
+
             // Get the events using Meetup API
             var events_url = "https://api.meetup.com/self/events/";
             $.ajax({
@@ -142,7 +147,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         });
     }
 
-    function get_photos(){
+    function get_photos(hash_response){
         // Obtain the data for the request
         var chosen_url_name = $(".group_cell.selected").attr("data-urlname");
         var chosen_event_id = $(".event_cell.selected").attr("data-eventid");
@@ -221,10 +226,6 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
             var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
             window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
             $(this).addClass("is-disabled")
-        });
-
-        $( "#get_photos_button" ).click(function() {
-            get_photos();
         });
 
         main();
