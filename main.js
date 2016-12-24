@@ -87,6 +87,10 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         $( ".group_cell" ).removeClass('selected');
         $(this).addClass('selected');
 
+        // As all events become unselected, we deactivate Step 3
+        $( ".step_three").removeClass('is-disabled');
+        $( ".step_three").addClass('is-disabled');
+
         // Get the group index in order to retrieve the events
         var group_index = parseInt($(this).attr('data-groupindex'));
 
@@ -98,6 +102,9 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         $( ".event_cell" ).click(function(){
             $( ".event_cell" ).removeClass('selected');
             $(this).addClass('selected');
+
+            // Now we are prepared to get the photos
+            $( ".step_three").removeClass('is-disabled');
         });
     }
 
