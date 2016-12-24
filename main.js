@@ -262,7 +262,7 @@ require([   "js/meetup.tools.js",
 
     $(document).ready(function(){
         console.log("Main loaded")
-        $("#advertising_space").replaceWith($(".advertisement"));
+        //$("#advertising_space").replaceWith($(".advertisement"));
 
         $( "#meetup_login_button" ).click(function() {
             // Main Entry point
