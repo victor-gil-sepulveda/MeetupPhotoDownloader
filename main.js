@@ -221,7 +221,7 @@ require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
     }
 
     function do_progress(){
-        var bar = new ProgressBar.Line("progress_bar_container", {
+        var bar = new ProgressBar.Line(progress_bar_container, {
           strokeWidth: 4,
           easing: 'easeInOut',
           duration: 1400,
