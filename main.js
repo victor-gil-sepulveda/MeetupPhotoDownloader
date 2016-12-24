@@ -217,7 +217,7 @@ require([   "js/meetup.tools.js",
         }
 
         // else, download them
-        var progress = do_progress();
+        var progress = do_progress(number_of_photos);
 
         var zip_file = new JSZip();
         var promises = [];
