@@ -17,7 +17,8 @@ describe('postprocess_events function', function() {
     });
 
     it('should extract a given set of links from a meetup photo response', function(){
-        var result = events.get_links_from_photo_response(test_data.test_photo_response, events.photo_size.HIGH_RES);
+        var result = events.get_links_from_photo_response(test_data.test_photo_response,
+                        events.photo_size.HIGH_RES);
         var expected = test_data.photo_links;
         expect(result).to.deep.equal(expected);
     });

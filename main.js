@@ -37,9 +37,55 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
     function process_event_response(result){
         var f_events = meetup.filter_events(result);
-        var g_by_events = meetup.group_by_event(f_events, "id");
+        var grouped_events = meetup.group_by_event(f_events, "id");
+        return grouped_events;
+    }
 
-        return g_by_events;
+    function create_group_cell(cell_data, cell_index){
+        return "<div class='group_cell selectable_info_cell' data-groupid='" +
+                cell_data[cell_index].id +
+                "' data-urlname='" + cell_data[cell_index].urlname+"'><p>"+
+                cell_data[cell_index].name +
+                "</p></div>" +
+                "<hr class='info_cell_line'>"
+    }
+
+    function create_event_cell(cell_data, cell_index){
+        return "<div class='event_cell selectable_info_cell' data-eventid='" +
+               cell_data[cell_index].id + "'><p>"+
+               cell_data[cell_index].name +
+               "</p></div><hr class='info_cell_line'>"
+    }
+
+    function populate_cells(cell_data, table_id, cell_template){
+            $(table_id).empty();
+            $(table_id).append("<hr class='info_cell_line'>");
+            for(var i = 0; i < cell_data.length; i++){
+                $(table_id).append(cell_template(cell_data, i));
+            }
+        }
+    }
+
+    function onGroupCellClicked(){
+        // Select the guy
+        $( ".group_cell" ).removeClass('selected');
+        $(this).addClass('selected');
+
+        // Get the event data
+        var group_index = $(this).attr('data-groupindex');
+        console.log(g_by_events)
+        console.log(group_id)
+        var event_list = g_by_events[parseInt(group_id)];
+        console.log(event_list)
+
+        // Populate event cells
+        populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
+
+        // Add callback to the events
+        $( ".event_cell" ).click(function(){
+            $( ".event_cell" ).removeClass('selected');
+            $(this).addClass('selected');
+        });
     }
 
     function main(){
@@ -60,40 +106,28 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 data: {"access_token": hash_response.access_token}
             })
             .done(function(result){
-                var g_by_events = process_event_response(result);
+                var grouped_events = process_event_response(result);
 
+                // populate group cells
+                populate_cells( grouped_events, "#groups_table", create_group_cell);
 
-                $("#groups_table").empty();
-                var i = 0;
-                $("#groups_table").append("<hr class='info_cell_line'>");
-                for(var group_id in g_by_events){
-                    $("#groups_table").append(
-                        "<div class='group_cell selectable_info_cell' data-groupid='" + group_id+"'><p>"+
-                        g_by_events[group_id][0].group.name+
-                        "</p></div><hr class='info_cell_line'>");
-                }
                 // Then add the callback for clicks
                 $( ".group_cell" ).click(function(){
+                    // Select the guy
                     $( ".group_cell" ).removeClass('selected');
                     $(this).addClass('selected');
 
-                    var group_id = $(this).attr('data-groupid');
+                    // Get the event data
+                    var group_index = $(this).attr('data-groupindex');
                     console.log(g_by_events)
                     console.log(group_id)
                     var event_list = g_by_events[parseInt(group_id)];
                     console.log(event_list)
-                    // Remove all content from the list
-                    $("#events_table").empty();
-                    $("#events_table").append("<hr class='info_cell_line'>");
-                    for(var i = 0; i< event_list.length; i++){
-                        $("#events_table").append(
-                            "<div class='event_cell selectable_info_cell' data-eventid='" +
-                            event_list[i].event.id+"' data-urlname='"+
-                            event_list[i].group.urlname+"'><p>"+
-                            g_by_events[group_id][i].event.name+
-                            "</p></div><hr class='info_cell_line'>");
-                    }
 
+                    // Populate event cells
+                    populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
+
+                    // Add callback to the events
                     $( ".event_cell" ).click(function(){
                         $( ".event_cell" ).removeClass('selected');
                         $(this).addClass('selected');

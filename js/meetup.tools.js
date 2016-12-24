@@ -28,6 +28,8 @@ define(["./tools.js"], function(tools) {
 
     function group_by_event(events, property="id"){
         var grouped_events = {}
+
+        // Group events by group property ex. id
         for (var i=0; i < events.length; i++){
             var event = events[i];
             if (event.group[property] in grouped_events){
@@ -37,16 +39,34 @@ define(["./tools.js"], function(tools) {
                 grouped_events[event.group[property]] = [event];
             }
         }
-        return grouped_events;
+
+        // Now flatten to a list
+        var grouped_list = [];
+        for (prop_id in grouped_events){
+            var new_group = {};
+            for (prop in grouped_events[prop_id][0].group){
+                new_group[prop] = grouped_events[prop_id][0].group[prop];
+            }
+
+            events_list = [];
+            for (var i = 0; i < grouped_events[prop_id].length; i++){
+                var new_event = {};
+                for (prop in grouped_events[prop_id][i].event){
+                    new_event[prop] = grouped_events[prop_id][i].event[prop];
+                }
+                events_list.push(new_event);
+            }
+            new_group["events"] = events_list;
+            grouped_list.push(new_group);
+        }
+
+        return grouped_list;
     }
 
     function get_links_from_photo_response(photo_response, resolution){
 
         var photo_response_data = photo_response.data;
         var photo_links = [];
-
-        console.log(photo_response_data.length)
-        console.log(photo_response_data)
 
         for (i in photo_response_data){
             photo_links.push({

@@ -3648,78 +3648,56 @@ define( function(require) {
              link: 'https://www.meetup.com/BarcelonaHikingGroup/events/234411531/',
              name: 'SANTA MAGDALENA DE CAMBRILS-CASTELL DE MILANY-TORRENT DE LA MASICA' } } ];
 
-    var grouped_event_data = {
-                "729488": [{
-                    "group": {
-                        "id": 729488,
-                        "name": "The Barcelona Hiking & Outdoors Group",
-                        "urlname": "BarcelonaHikingGroup"
-                    },
-                    "event": {
-                        "id": "234915160",
-                        "link": "https://www.meetup.com/BarcelonaHikingGroup/events/234915160/",
-                        "name": "CATLLARÀS, POR DELANTE Y POR DETRÁS."
-                    }
-                }, {
-                    "group": {
-                        "id": 729488,
-                        "name": "The Barcelona Hiking & Outdoors Group",
-                        "urlname": "BarcelonaHikingGroup"
-                    },
-                    "event": {
-                        "id": "234411531",
-                        "link": "https://www.meetup.com/BarcelonaHikingGroup/events/234411531/",
-                        "name": "SANTA MAGDALENA DE CAMBRILS-CASTELL DE MILANY-TORRENT DE LA MASICA"
-                    }
-                }],
-                "8329102": [{
-                    "group": {
-                        "id": 8329102,
-                        "name": "BCN Juegos De Rol y Mesa Fan Club - BCN Role Playing Games",
-                        "urlname": "BCN-Juegos-De-Rol-y-Mesa-Fan-Club-BCN-Role-Playing-Games"
-                    },
-                    "event": {
-                        "id": "234881241",
-                        "link": "https://www.meetup.com/BCN-Juegos-De-Rol-y-Mesa-Fan-Club-BCN-Role-Playing-Games/events/234881241/",
-                        "name": "Jugar el VIERNES con BarnaJocs / Play in FRIDAY with BarnaJocs"
-                    }
-                }],
-                "10227522": [{
-                    "group": {
-                        "id": 10227522,
-                        "name": "Barcelona Pluralsight Study Group",
-                        "urlname": "e2d47158-c82d-4de7-8648-e233d4bdc2f1"
-                    },
-                    "event": {
-                        "id": "140249752",
-                        "link": "https://www.meetup.com/e2d47158-c82d-4de7-8648-e233d4bdc2f1/events/140249752/",
-                        "name": "SOLID Principles of Object Oriented Design 1/2"
-                    }
-                }, {
-                    "group": {
-                        "id": 10227522,
-                        "name": "Barcelona Pluralsight Study Group",
-                        "urlname": "e2d47158-c82d-4de7-8648-e233d4bdc2f1"
-                    },
-                    "event": {
-                        "id": "140250152",
-                        "link": "https://www.meetup.com/e2d47158-c82d-4de7-8648-e233d4bdc2f1/events/140250152/",
-                        "name": "SOLID Principles of Object Oriented Design 2/2"
-                    }
-                }],
-                "13858212": [{
-                    "group": {
-                        "id": 13858212,
-                        "name": "Grup d'estudi de machine learning de Barcelona",
-                        "urlname": "Grup-destudi-de-machine-learning-de-Barcelona"
-                    },
-                    "event": {
-                        "id": "228197409",
-                        "link": "https://www.meetup.com/Grup-destudi-de-machine-learning-de-Barcelona/events/228197409/",
-                        "name": "Barcelona convolucionada: Deep Learning a l'abast de tothom."
-                    }
-                }]
-             };
+    var grouped_event_data = [{
+                             	"id": 729488,
+                             	"name": "The Barcelona Hiking & Outdoors Group",
+                             	"urlname": "BarcelonaHikingGroup",
+                             	"events": [{
+                             			"id": "234915160",
+                             			"link": "https://www.meetup.com/BarcelonaHikingGroup/events/234915160/",
+                             			"name": "CATLLARÀS, POR DELANTE Y POR DETRÁS."
+                             		},
+                             		{
+                             			"id": "234411531",
+                             			"link": "https://www.meetup.com/BarcelonaHikingGroup/events/234411531/",
+                             			"name": "SANTA MAGDALENA DE CAMBRILS-CASTELL DE MILANY-TORRENT DE LA MASICA"
+                             		}
+                             	]
+                             },
+                             {
+                             	"id": 8329102,
+                             	"name": "BCN Juegos De Rol y Mesa Fan Club - BCN Role Playing Games",
+                             	"urlname": "BCN-Juegos-De-Rol-y-Mesa-Fan-Club-BCN-Role-Playing-Games",
+                             	"events": [{
+                             		"id": "234881241",
+                             		"link": "https://www.meetup.com/BCN-Juegos-De-Rol-y-Mesa-Fan-Club-BCN-Role-Playing-Games/events/234881241/",
+                             		"name": "Jugar el VIERNES con BarnaJocs / Play in FRIDAY with BarnaJocs"
+                             	}]
+                             },
+                             {
+                             	"id": 10227522,
+                             	"name": "Barcelona Pluralsight Study Group",
+                             	"urlname": "e2d47158-c82d-4de7-8648-e233d4bdc2f1",
+                             	"events": [{
+                             		"id": "140249752",
+                             		"link": "https://www.meetup.com/e2d47158-c82d-4de7-8648-e233d4bdc2f1/events/140249752/",
+                             		"name": "SOLID Principles of Object Oriented Design 1/2"
+                             	}, {
+                             		"id": "140250152",
+                             		"link": "https://www.meetup.com/e2d47158-c82d-4de7-8648-e233d4bdc2f1/events/140250152/",
+                             		"name": "SOLID Principles of Object Oriented Design 2/2"
+                             	}]
+                             },
+                             {
+                             	"id": 13858212,
+                             	"name": "Grup d'estudi de machine learning de Barcelona",
+                             	"urlname": "Grup-destudi-de-machine-learning-de-Barcelona",
+                             	"events": [{
+                             		"id": "228197409",
+                             		"link": "https://www.meetup.com/Grup-destudi-de-machine-learning-de-Barcelona/events/228197409/",
+                             		"name": "Barcelona convolucionada: Deep Learning a l'abast de tothom."
+                             	}]
+                             }];
 
     var photo_links = [ { url: 'http://photos2.meetupstatic.com/photos/event/9/d/d/e/highres_455980414.jpeg',
                           id: 455980414,
