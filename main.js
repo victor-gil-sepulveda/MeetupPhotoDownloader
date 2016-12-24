@@ -10,9 +10,8 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 require([   "js/meetup.tools.js",
-            "js/url.tools.js",
-            'lib/progressbar.min.js'],
-        function(meetup, url_tools, ProgressBar) {
+            "js/url.tools.js"],
+        function(meetup, url_tools) {
 
     /*
         Gets the result from Meetup API and processes it
@@ -134,7 +133,7 @@ require([   "js/meetup.tools.js",
         Returns a promise that, when done, will contain the blob
         representing the downloaded image.
     */
-    function download_photo(photo, zip_file, progress_bar, fraction){
+    function download_photo(photo, zip_file, progress){
         return $.ajax({
                 url: photo.url,
                 type: "GET",
@@ -146,7 +145,7 @@ require([   "js/meetup.tools.js",
         .done(function(result){
             var photo_file_name = photo.author+"_"+ url_tools.split_image_name(photo.url);
             zip_file.file(photo_file_name, result, {base64: true});
-            progress_bar.animate(progress_bar.value()+fraction)
+            progress.add_one(progress);
         })
         .fail(function(result){
             console.log("Failed");
@@ -185,6 +184,22 @@ require([   "js/meetup.tools.js",
         });
     }
 
+    function do_progress(num_photos){
+        $(".loading_text_container").append("<p class='loading' id='loading_text'> Downloading 0/"+num_photos+"</p>");
+
+        // Return a pseudo-object (I got experimental here :D )
+        return {
+            element: $("#loading_text"),
+            value: 0,
+            n: num_photos,
+            add_one: function(me){
+                me.value += 1;
+                me.element.html("<p class='loading' id='loading_text'> Downloading " +
+                        me.value +"/"+me.n+"</p>");
+            }
+        }
+    }
+
     function request_and_pack_photos( result ){
         var photos = meetup.get_links_from_photo_response(result,
                                 meetup.photo_size.HIGH_RES);
@@ -202,17 +217,18 @@ require([   "js/meetup.tools.js",
         }
 
         // else, download them
-        var progress_bar = do_progress();
+        var progress = do_progress();
 
         var zip_file = new JSZip();
         var promises = [];
         for (var i = 0; i < photos.length; i++){
-            promises.push(download_photo(photos[i], zip_file, progress_bar, 1/number_of_photos));
+            promises.push(download_photo(photos[i], zip_file, progress);
         }
 
         Promise.all(promises)
             .then(result => {
                 console.log(result);
+                $(".loading_text_container").append("<p class='loading' id='loading_text'>Packing</p>")
                 zip_file.generateAsync({type:"blob"})
                    .then(function(content) {
                         // see FileSaver.js
@@ -226,41 +242,7 @@ require([   "js/meetup.tools.js",
             });
     }
 
-    function do_progress(){
-    console.log("Doing progress!!")
-        var bar = new ProgressBar.Line(progress_bar_container, {
-          strokeWidth: 4,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#FFEA82',
-          trailColor: '#eee',
-          trailWidth: 1,
-          svgStyle: {width: '100%', height: '100%'},
-          text: {
-            style: {
-              // Text color.
-              // Default: same as stroke color (options.color)
-              color: '#999',
-              position: 'absolute',
-              right: '0',
-              top: '30px',
-              padding: 0,
-              margin: 0,
-              transform: null
-            },
-            autoStyleContainer: false
-          },
-          from: {color: '#FFEA82'},
-          to: {color: '#ED6A5A'},
-          step: (state, bar) => {
-            bar.setText(Math.round(bar.value() * 100) + ' %');
-          }
-        });
-        return bar;
-
-    }
-
-    function add_chitika_adds() {
+     function add_chitika_adds() {
         if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
         var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
         var placement_id = window.CHITIKA.units.length;
