@@ -45,23 +45,24 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     }
 
     /*
-        Creates the table cell div that holds a group name.
+        Creates the table cell div that holds a group.
     */
     function create_group_cell(cell_data, cell_index){
         return "<div class='group_cell selectable_info_cell' data-groupid='" +
                 cell_data[cell_index].id +
-                "' data-urlname='" + cell_data[cell_index].urlname+"'><p>"+
+                "' data-urlname='" + cell_data[cell_index].urlname + "' " +
+                " data-groupindex='" + cell_index + "'><p>" +
                 cell_data[cell_index].name +
                 "</p></div>" +
                 "<hr class='info_cell_line'>"
     }
 
     /*
-        Creates the table cell div that holds an event name.
+        Creates the table cell div that holds an event.
     */
     function create_event_cell(cell_data, cell_index){
         return "<div class='event_cell selectable_info_cell' data-eventid='" +
-               cell_data[cell_index].id + "'><p>"+
+               cell_data[cell_index].id + "'><p>" +
                cell_data[cell_index].name +
                "</p></div><hr class='info_cell_line'>"
     }
@@ -73,7 +74,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     function populate_cells(cell_data, table_id, cell_template){
         $(table_id).empty();
         $(table_id).append("<hr class='info_cell_line'>");
-        for(var i = 0; i < cell_data.length; i++){
+        for( var i = 0; i < cell_data.length; i++){
             $(table_id).append(cell_template(cell_data, i));
         }
     }
@@ -89,8 +90,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         // Get the event data
         var group_index = $(this).attr('data-groupindex');
         console.log(g_by_events)
-        console.log(group_id)
-        var event_list = g_by_events[parseInt(group_id)];
+        console.log(group_index)
+        var event_list = g_by_events[parseInt(group_index)];
         console.log(event_list)
 
         // Populate event cells
@@ -135,6 +136,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     // Get the group index in order to retrieve the events
                     var group_index = parseInt($(this).attr('data-groupindex'));
                     console.log(grouped_events)
+                    console.log(group_index)
                     // Populate event cells
                     populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
 
