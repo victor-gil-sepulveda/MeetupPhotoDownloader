@@ -265,13 +265,13 @@ require([   "js/meetup.tools.js",
         var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
         var placement_id = window.CHITIKA.units.length;
         window.CHITIKA.units.push(unit);
-        $("#advertising_space").html('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        $("#advertising_space").append('<div id="chitikaAdBlock-' + placement_id + '"></div>');
     }
 
     $(document).ready(function(){
         // Chitika adds
         console.log("Main loaded")
-
+        add_chitika_adds()
 
         console.log("Add added")
 
