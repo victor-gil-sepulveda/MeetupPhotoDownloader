@@ -184,14 +184,16 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
         var number_of_photos = photos.length;
 
+        console.log(photos);
+
         if(number_of_photos == 0){
             // Warn the user the event has not photos
+            console.log("no photos!")
             // TODO
             return;
         }
 
         // else, download them
-        console.log(photos);
         do_progress();
         return;
 
