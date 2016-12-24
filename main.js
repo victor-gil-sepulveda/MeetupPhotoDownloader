@@ -225,7 +225,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
         $( "#get_photos_button" ).click(function() {
             get_photos();
-        }
+        });
 
         main();
     });
