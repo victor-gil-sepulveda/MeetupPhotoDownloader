@@ -9,14 +9,13 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var JSZip = require("jszip");
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-
 require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
 
-    function download_photo(photo, zip_file){
     /*
         Returns a promise that, when done, will contain the blob
         representing the downloaded image.
     */
+    function download_photo(photo, zip_file){
         return $.ajax({
                 url: photo.url,
                 type: "GET",
@@ -35,12 +34,19 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
         });
     }
 
+    /*
+        Gets the result from Meetup API and processes it
+        to make it easier to handle.
+    */
     function process_event_response(result){
         var f_events = meetup.filter_events(result);
         var grouped_events = meetup.group_by_event(f_events, "id");
         return grouped_events;
     }
 
+    /*
+        Creates the table cell div that holds a group name.
+    */
     function create_group_cell(cell_data, cell_index){
         return "<div class='group_cell selectable_info_cell' data-groupid='" +
                 cell_data[cell_index].id +
@@ -50,6 +56,9 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 "<hr class='info_cell_line'>"
     }
 
+    /*
+        Creates the table cell div that holds an event name.
+    */
     function create_event_cell(cell_data, cell_index){
         return "<div class='event_cell selectable_info_cell' data-eventid='" +
                cell_data[cell_index].id + "'><p>"+
@@ -57,15 +66,21 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                "</p></div><hr class='info_cell_line'>"
     }
 
+    /*
+        Generalized function to populate the groups or events table
+        (both work with lists of cells).
+    */
     function populate_cells(cell_data, table_id, cell_template){
-            $(table_id).empty();
-            $(table_id).append("<hr class='info_cell_line'>");
-            for(var i = 0; i < cell_data.length; i++){
-                $(table_id).append(cell_template(cell_data, i));
-            }
+        $(table_id).empty();
+        $(table_id).append("<hr class='info_cell_line'>");
+        for(var i = 0; i < cell_data.length; i++){
+            $(table_id).append(cell_template(cell_data, i));
         }
     }
 
+    /*
+
+    */
     function onGroupCellClicked(){
         // Select the guy
         $( ".group_cell" ).removeClass('selected');
@@ -89,14 +104,14 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     }
 
     function main(){
-
         if(window.location.hash) {
-
             // Display step 2
              $(".step_two").removeClass("is-disabled")
 
             // We come from oauth redirect
             var hash_response = url_tools.parse_fragment(window.location.href);
+
+            // Get the events using Meetup API
             var events_url = "https://api.meetup.com/self/events/";
             $.ajax({
                 url: events_url,
