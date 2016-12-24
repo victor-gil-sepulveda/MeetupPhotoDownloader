@@ -261,8 +261,17 @@ require([   "js/meetup.tools.js",
     }
 
     $(document).ready(function(){
+        // Chitika adds
         console.log("Main loaded")
-        //$("#advertising_space").replaceWith($(".advertisement"));
+        function() {
+            if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+            var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
+            var placement_id = window.CHITIKA.units.length;
+            window.CHITIKA.units.push(unit);
+            $("#advertising_space").html('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        }
+
+        console.log("Add added")
 
         $( "#meetup_login_button" ).click(function() {
             // Main Entry point
@@ -272,6 +281,8 @@ require([   "js/meetup.tools.js",
             // Deactivate meetup login button
             $( "#meetup_login_button").addClass('is-disabled');
         });
+
+
 
         main();
     });
