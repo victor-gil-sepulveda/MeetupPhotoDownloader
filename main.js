@@ -9,7 +9,8 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var JSZip = require("jszip");
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
+require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
+        function(meetup, url_tools, ProgressBar) {
 
     /*
         Gets the result from Meetup API and processes it
