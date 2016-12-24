@@ -88,6 +88,9 @@ require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
 
     function main(){
         if(window.location.hash) {
+            // Deactivate meetup login button
+            $( "#meetup_login_button").addClass('is-disabled');
+
             // Activate step 2
             $(".step_two").removeClass("is-disabled")
 
@@ -260,7 +263,8 @@ require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
             var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
             var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
             window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
-            $(this).addClass("is-disabled")
+            // Deactivate meetup login button
+            $( "#meetup_login_button").addClass('is-disabled');
         });
 
         main();
