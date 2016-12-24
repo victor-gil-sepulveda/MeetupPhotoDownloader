@@ -266,6 +266,7 @@ require([   "js/meetup.tools.js",
         var placement_id = window.CHITIKA.units.length;
         window.CHITIKA.units.push(unit);
         $("#advertising_space").append('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        $.getScript("//cdn.chitika.net/getads.js");
     }
 
     $(document).ready(function(){
