@@ -101,6 +101,7 @@ require([   "js/meetup.tools.js",
 
             // Prepare the download button
             $( "#get_photos_button" ).click(function() {
+                $( this ).addClass('is-disabled');
                 get_photos(hash_response);
             });
 
@@ -196,6 +197,7 @@ require([   "js/meetup.tools.js",
             // Warn the user the event has not photos
             console.log("no photos!")
             // TODO
+            $("#get_photos_button").removeClass('is-disabled');
             return;
         }
 
