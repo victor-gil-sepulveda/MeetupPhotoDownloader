@@ -133,8 +133,8 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                     $(this).addClass('selected');
 
                     // Get the group index in order to retrieve the events
-                    var group_index = $(this).attr('data-groupindex');
-
+                    var group_index = parseInt($(this).attr('data-groupindex'));
+                    console.log(grouped_events)
                     // Populate event cells
                     populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
 
