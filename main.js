@@ -9,7 +9,9 @@ http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
 //var JSZip = require("jszip");
 //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
+require([   "js/meetup.tools.js",
+            "js/url.tools.js",
+            'lib/progressbar.min.js'],
         function(meetup, url_tools, ProgressBar) {
 
     /*
@@ -224,6 +226,7 @@ require(["js/meetup.tools.js", "js/url.tools.js", 'lib/progressbar.min.js'],
     }
 
     function do_progress(){
+    console.log("Doing progress!!")
         var bar = new ProgressBar.Line(progress_bar_container, {
           strokeWidth: 4,
           easing: 'easeInOut',
