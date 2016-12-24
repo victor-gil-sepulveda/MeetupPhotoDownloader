@@ -82,19 +82,16 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
     /*
 
     */
-    function onGroupCellClicked(){
+    function onGroupCellClicked( event ){
         // Select the guy
         $( ".group_cell" ).removeClass('selected');
         $(this).addClass('selected');
 
-        // Get the event data
-        var group_index = $(this).attr('data-groupindex');
-        console.log(g_by_events)
-        console.log(group_index)
-        var event_list = g_by_events[parseInt(group_index)];
-        console.log(event_list)
+        // Get the group index in order to retrieve the events
+        var group_index = parseInt($(this).attr('data-groupindex'));
 
         // Populate event cells
+        var grouped_events = event.data.grouped_events;
         populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
 
         // Add callback to the events
@@ -128,24 +125,7 @@ require(["js/meetup.tools.js", "js/url.tools.js"], function(meetup, url_tools) {
                 populate_cells( grouped_events, "#groups_table", create_group_cell);
 
                 // Then add the callback for clicks
-                $( ".group_cell" ).click(function(){
-                    // Select the guy
-                    $( ".group_cell" ).removeClass('selected');
-                    $(this).addClass('selected');
-
-                    // Get the group index in order to retrieve the events
-                    var group_index = parseInt($(this).attr('data-groupindex'));
-                    console.log(grouped_events)
-                    console.log(group_index)
-                    // Populate event cells
-                    populate_cells( grouped_events[group_index].events, "#events_table", create_event_cell);
-
-                    // Add callback to the events
-                    $( ".event_cell" ).click(function(){
-                        $( ".event_cell" ).removeClass('selected');
-                        $(this).addClass('selected');
-                    });
-                });
+                $( ".group_cell" ).click({"grouped_events": grouped_events}, onGroupCellClicked);
             })
             .fail(function(result){
                 console.log("Failed gathering group info");
