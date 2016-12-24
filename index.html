@@ -175,10 +175,17 @@
             <div class="row is-disabled step_three">
                 <div class="five columns" > <p></p></div>
                 <div class="two columns" >
-                    <button class="button-primary">Download</button>
+                    <button class="button-primary" id="get_photos_button">Download</button>
                 </div>
                 <div class="five columns" > <p></p></div>
             </div>
+
+            <!-- Markup for the dialog -->
+            <div id="dialog" title="Download Photos">
+                <div class="progress-label"> Starting download... </div>
+                <div id="progressbar"></div>
+            </div>
+
         </div>
     </body>
 </html>
