@@ -222,7 +222,7 @@ require([   "js/meetup.tools.js",
         var zip_file = new JSZip();
         var promises = [];
         for (var i = 0; i < photos.length; i++){
-            promises.push(download_photo(photos[i], zip_file, progress);
+            promises.push(download_photo(photos[i], zip_file, progress));
         }
 
         Promise.all(promises)
