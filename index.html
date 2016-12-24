@@ -15,17 +15,14 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
 
-        <!-- Geenric Javascript -->
+        <!-- Generic Javascript Libs -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="lib/prefix-free.min.js"></script>
         <script type="text/javascript" src="lib/jszip.js"></script>
         <script type="text/javascript" src="lib/jquery.binarytransport.js"></script>
         <script type="text/javascript" src="lib/FileSaver.js"></script>
         <script data-main = "main.js" src="lib/require.js"></script>
-
-        <!-- Jquery UI -->
-        <script type="text/javascript" src="lib/jquery-ui/jquery-ui.min.js"></script>
-        <link rel="stylesheet" href="lib/jquery-ui/jquery-ui.min.css">
+        <script data-main = "main.js" src="lib/progressbar.min.js"></script>
 
         <!-- Chitika adds -->
         <script type="text/javascript">
@@ -179,15 +176,9 @@
             <div class="row is-disabled step_three">
                 <div class="five columns" > <p></p></div>
                 <div class="two columns" >
-                    <button class="button-primary" id="get_photos_button">Download</button>
+                    <div class="button-primary" id="get_photos_button">Download</div>
                 </div>
                 <div class="five columns" > <p></p></div>
-            </div>
-
-            <!-- Markup for the dialog -->
-            <div id="dialog" title="Download Photos">
-                <div class="progress-label"> Starting download... </div>
-                <div id="progressbar"></div>
             </div>
 
         </div>
