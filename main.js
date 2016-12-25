@@ -240,12 +240,16 @@ require([   "js/meetup.tools.js",
                         // see FileSaver.js
                         saveAs(content, "photos.zip");
                         $("#dialog_ok").click(function(){
+
                             // Change to thanks
                             $("#thanks_page").css("display","");
                             $("#main_page").css("display","none");
+
+                            // Change advertisement
+                            $("#thanks_advertising_space").append($("#advertising_space").html());
+                            $("#advertising_space").empty();
                         });
                         $("#dialog_ok").removeClass('is-disabled');
-
                    });
             },
             failure_reason => {
