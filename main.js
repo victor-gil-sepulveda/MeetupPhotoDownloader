@@ -266,10 +266,22 @@ require([   "js/meetup.tools.js",
             $( "#meetup_login_button").addClass('is-disabled');
         });
 
-
-
         main();
     });
 
 
+    // From overflow.com/questions/3656592/how-to-programmatically-disable-page-scrolling-with-jquery
+    function disable_scrolling(){
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
+    }
+
+    function restore_scrolling(){
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });
+    }
 });
