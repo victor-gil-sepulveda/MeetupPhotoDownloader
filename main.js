@@ -246,9 +246,7 @@ require([   "js/meetup.tools.js",
                             $("#main_page").css("display","none");
 
                             // Change advertisement
-                            $("#thanks_advertising_space").append($("#advertising_space").html());
-                            $("#advertising_space").empty();
-                            $("#thanks_advertising_space").css("display","");
+                            $("#advertising_space").css("display","");
                         });
                         $("#dialog_ok").removeClass('is-disabled');
                    });
