@@ -188,7 +188,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $(".dialog_text").html("Please wait. <cr>  Downloading "+num_photos);
+        $(".dialog_text").html("Please wait. <cr>  Downloading "+num_photos+ " photos ");
 
         // Return a pseudo-object (I got experimental here :D )
         return {
@@ -197,7 +197,7 @@ require([   "js/meetup.tools.js",
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("Please wait. <cr> Downloading " + me.value + "/" + me.n);
+                me.element.html("Please wait. <cr> Downloading " + me.value + "/" + me.n+ " ");
             }
         }
     }
@@ -222,7 +222,7 @@ require([   "js/meetup.tools.js",
         // else, download them
         show_dialog( "Please wait." );
         var progress = do_progress(number_of_photos);
-        $("dialog_ok").addClass('is-disabled');
+        $("#dialog_ok").addClass('is-disabled');
 
         // Add the loading class to the text
         $(".dialog_text").addClass("loading");
@@ -239,11 +239,12 @@ require([   "js/meetup.tools.js",
                    .then(function(content) {
                         // see FileSaver.js
                         saveAs(content, "photos.zip");
-                        $("dialog_ok").click(function(){
+                        $("#dialog_ok").click(function(){
                             // Change to thanks
-
+                            $("#thanks_page").css("display","");
+                            $("#main_page").css("display","none");
                         });
-                        $("dialog_ok").removeClass('is-disabled');
+                        $("#dialog_ok").removeClass('is-disabled');
 
                    });
             },

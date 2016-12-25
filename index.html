@@ -131,6 +131,16 @@
                 margin: auto;
             }
 
+            .right_copyright{
+                text-align: right;
+                font-size: 100%;
+            }
+
+            .left_copyright{
+                text-align: left;
+                font-size: 100%;
+            }
+
             /* for the ellipsis movement
                 got from: http://stackoverflow.com/questions/13014808/is-there-anyway-to-animate-an-ellipsis-with-css-animations
             */
@@ -270,14 +280,14 @@
 
         <!-- Copyright -->
         <hr>
-        <div class="container" class="is-disabled">
+        <div class="container is-disabled">
             <div class="row" >
-                <div class="six columns">
+                <div class="six columns left_copyright">
                     <p> &copy; Víctor Gil </p>
                     <p> The Meetup name, logo, and brand is property of their respective owners. </p>
                 </div>
 
-                <div class="six columns">
+                <div class="six columns right_copyright">
                     <a href="www.thelostlib.com"> www.thelostlib.com</a>
                 </div>
             </div>
@@ -285,12 +295,12 @@
 
         <!-- overlay -->
         <div class="full_screen_overlay" style="display:none;">
-        <div class="dialog_window" >
-            <div class="dialog_text"> This is a random text</div>
-            <div class="mybutton dialog_button" id="dialog_ok">
-                Ok
+            <div class="dialog_window" >
+                <div class="dialog_text"> </div>
+                <div class="mybutton dialog_button" id="dialog_ok">
+                    Ok
+                </div>
             </div>
-        </div>
         </div>
     </body>
 </html>
