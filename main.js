@@ -185,7 +185,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $("#loading_text_container").append("<p class='loading' id='loading_text'> Downloading 0/"+num_photos+"</p>");
+        $("#loading_text_container").append("<p id='loading_text'> Downloading 0/"+num_photos+"</p>");
 
         // Return a pseudo-object (I got experimental here :D )
         return {
@@ -194,8 +194,7 @@ require([   "js/meetup.tools.js",
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("<p class='loading' id='loading_text'> Downloading " +
-                        me.value +"/"+me.n+"</p>");
+                me.element.html("Downloading " + me.value + "/" + me.n);
             }
         }
     }
@@ -228,7 +227,7 @@ require([   "js/meetup.tools.js",
         Promise.all(promises)
             .then(result => {
                 console.log(result);
-                $(".loading_text_container").append("<p class='loading' id='loading_text'>Packing</p>")
+                $("#loading_text_container").append("<p id='packing_text'>Packing</p>")
                 zip_file.generateAsync({type:"blob"})
                    .then(function(content) {
                         // see FileSaver.js
