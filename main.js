@@ -241,7 +241,7 @@ require([   "js/meetup.tools.js",
             });
     }
 
-     function add_chitika_adds() {
+    function add_chitika_adds() {
         if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
         var unit = {"calltype":"async[2]","publisher":"vgil","width":728,"height":90,"sid":"Chitika Default"};
         var placement_id = window.CHITIKA.units.length;
@@ -251,16 +251,15 @@ require([   "js/meetup.tools.js",
     }
 
     $(document).ready(function(){
-        // Chitika adds
-        console.log("Main loaded")
-        add_chitika_adds()
+        add_chitika_adds();
 
-        console.log("Add added")
+        prepare_dialog();
+
 
         $( "#meetup_login_button" ).click(function() {
             // Main Entry point
-            var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke"
-            var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader"
+            var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke";
+            var redirect_url = "http://www.thelostlib.com/MeetupPhotoDownloader";
             window.location = "https://secure.meetup.com/oauth2/authorize?client_id="+consumer_key+"&response_type=token&redirect_uri="+redirect_url;
             // Deactivate meetup login button
             $( "#meetup_login_button").addClass('is-disabled');
@@ -268,7 +267,6 @@ require([   "js/meetup.tools.js",
 
         main();
     });
-
 
     // From overflow.com/questions/3656592/how-to-programmatically-disable-page-scrolling-with-jquery
     function disable_scrolling(){
@@ -283,5 +281,23 @@ require([   "js/meetup.tools.js",
             overflow: 'auto',
             height: 'auto'
         });
+    }
+
+    function prepare_dialog(){
+        $("#dialog_ok").click(function(){
+            close_dialog()
+        });
+        $(".full_screen_overlay").css("display","none");
+    }
+
+    function show_dialog( text ){
+        disable_scrolling();
+        $(".dialog_text").html(text);
+        $(".full_screen_overlay").css("display","");
+    }
+
+    function close_dialog(){
+        restore_scrolling();
+        $(".full_screen_overlay").css("display","none");
     }
 });
