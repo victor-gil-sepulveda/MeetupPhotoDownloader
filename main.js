@@ -188,7 +188,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $(".dialog_text").html("Please wait. Downloading 0/"+num_photos);
+        $(".dialog_text").html("<p>Please wait.</p> <p>Downloading "+num_photos+"</p>");
 
         // Return a pseudo-object (I got experimental here :D )
         return {
@@ -197,7 +197,7 @@ require([   "js/meetup.tools.js",
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("Please wait. Downloading " + me.value + "/" + me.n);
+                me.element.html("<p>Please wait.</p> <p>Downloading " + me.value + "/" + me.n+"</p>");
             }
         }
     }
@@ -220,7 +220,7 @@ require([   "js/meetup.tools.js",
         }
 
         // else, download them
-        show_dialog( "Please wait." );
+        show_dialog( "<p>Please wait.</p>" );
         var progress = do_progress(number_of_photos);
         $("dialog_ok").addClass('is-disabled');
 
@@ -235,7 +235,6 @@ require([   "js/meetup.tools.js",
 
         Promise.all(promises)
             .then(result => {
-                $("#loading_text_container").append("<p id='packing_text'>Packing</p>")
                 zip_file.generateAsync({type:"blob"})
                    .then(function(content) {
                         // see FileSaver.js
