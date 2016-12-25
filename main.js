@@ -188,7 +188,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $(".dialog_text").html("Please wait. <cr>  Downloading "+num_photos+ " photos ");
+        $(".dialog_text").html("Please wait. <br>  Downloading "+num_photos+ " photos ");
 
         // Return a pseudo-object (I got experimental here :D )
         return {
@@ -197,7 +197,7 @@ require([   "js/meetup.tools.js",
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("Please wait. <cr> Downloading " + me.value + "/" + me.n+ " ");
+                me.element.html("Please wait. <br> Downloading " + me.value + "/" + me.n+ " ");
             }
         }
     }
