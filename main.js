@@ -188,7 +188,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $(".dialog_text").html("<p>Please wait.</p> <p>Downloading "+num_photos+"</p>");
+        $(".dialog_text").html("Please wait. <cr>  Downloading "+num_photos);
 
         // Return a pseudo-object (I got experimental here :D )
         return {
@@ -197,7 +197,7 @@ require([   "js/meetup.tools.js",
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("<p>Please wait.</p> <p>Downloading " + me.value + "/" + me.n+"</p>");
+                me.element.html("Please wait. <cr> Downloading " + me.value + "/" + me.n);
             }
         }
     }
@@ -220,7 +220,7 @@ require([   "js/meetup.tools.js",
         }
 
         // else, download them
-        show_dialog( "<p>Please wait.</p>" );
+        show_dialog( "Please wait." );
         var progress = do_progress(number_of_photos);
         $("dialog_ok").addClass('is-disabled');
 
@@ -240,8 +240,8 @@ require([   "js/meetup.tools.js",
                         // see FileSaver.js
                         saveAs(content, "photos.zip");
                         $("dialog_ok").click(function(){
-                            // Go to the thanks page and end
-                            window.location = "http://www.thelostlib.com/MeetupPhotoDownloader/thanks.html"
+                            // Change to thanks
+
                         });
                         $("dialog_ok").removeClass('is-disabled');
 
