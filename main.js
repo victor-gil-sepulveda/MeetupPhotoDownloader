@@ -214,13 +214,15 @@ require([   "js/meetup.tools.js",
             // Warn the user the event has not photos
             show_dialog( "It looks like this event has no photo albums. "+
              "Please try with another one." );
-
+            go_to_second_step();
             $("#get_photos_button").removeClass('is-disabled');
             return;
         }
 
         // else, download them
+        show_dialog( "Please wait." );
         var progress = do_progress(number_of_photos);
+        $("dialog_ok").addClass('is-disabled');
 
         // Add the loading class to the text
         $(".dialog_text").addClass("loading");
@@ -238,6 +240,12 @@ require([   "js/meetup.tools.js",
                    .then(function(content) {
                         // see FileSaver.js
                         saveAs(content, "photos.zip");
+                        $("dialog_ok").click(function(){
+                            // Go to the thanks page and end
+                            window.location = "http://www.thelostlib.com/MeetupPhotoDownloader/thanks.html"
+                        });
+                        $("dialog_ok").removeClass('is-disabled');
+
                    });
             },
             failure_reason => {
