@@ -214,7 +214,7 @@ require([   "js/meetup.tools.js",
 
         if(number_of_photos == 0){
             // Warn the user the event has not photos
-            show_dialog( "It looks like this events has no photo albums. "
+            show_dialog( "It looks like this events has no photo albums. "+
              "Please try with another one." );
 
             $("#get_photos_button").removeClass('is-disabled');
