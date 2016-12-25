@@ -185,7 +185,7 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $(".loading_text_container").append("<p class='loading' id='loading_text'> Downloading 0/"+num_photos+"</p>");
+        $("#loading_text_container").append("<p class='loading' id='loading_text'> Downloading 0/"+num_photos+"</p>");
 
         // Return a pseudo-object (I got experimental here :D )
         return {
