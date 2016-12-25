@@ -244,6 +244,7 @@ require([   "js/meetup.tools.js",
                             // Change to thanks
                             $("#thanks_page").css("display","");
                             $("#main_page").css("display","none");
+                            $("#main_page_2").css("display","none");
 
                             // Change advertisement
                             $("#advertising_space").css("display","");
