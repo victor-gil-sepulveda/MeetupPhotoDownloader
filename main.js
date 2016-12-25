@@ -90,12 +90,10 @@ require([   "js/meetup.tools.js",
     function main(){
         if(window.location.hash) {
             // Go to the second step
-            $('html, body').animate({
-                scrollTop: $("#second_step_header").offset().top
-            }, 2000);
+            go_to_second_step();
 
-            // Deactivate meetup login button
-            $( "#meetup_login_button").addClass('is-disabled');
+            // Deactivate 1st step login button
+            $( ".step_one").addClass('is-disabled');
 
             // Activate step 2
             $(".step_two").removeClass("is-disabled")
@@ -190,16 +188,16 @@ require([   "js/meetup.tools.js",
     }
 
     function do_progress(num_photos){
-        $("#get_photos_button").html("Downloading 0/"+num_photos);
+        $(".dialog_text").html("Please wait. Downloading 0/"+num_photos);
 
         // Return a pseudo-object (I got experimental here :D )
         return {
-            element: $("#get_photos_button"),
+            element: $(".dialog_text"),
             value: 0,
             n: num_photos,
             add_one: function(me){
                 me.value += 1;
-                me.element.html("Downloading " + me.value + "/" + me.n);
+                me.element.html("Please wait. Downloading " + me.value + "/" + me.n);
             }
         }
     }
@@ -214,7 +212,7 @@ require([   "js/meetup.tools.js",
 
         if(number_of_photos == 0){
             // Warn the user the event has not photos
-            show_dialog( "It looks like this events has no photo albums. "+
+            show_dialog( "It looks like this event has no photo albums. "+
              "Please try with another one." );
 
             $("#get_photos_button").removeClass('is-disabled');
@@ -224,6 +222,9 @@ require([   "js/meetup.tools.js",
         // else, download them
         var progress = do_progress(number_of_photos);
 
+        // Add the loading class to the text
+        $(".dialog_text").addClass("loading");
+
         var zip_file = new JSZip();
         var promises = [];
         for (var i = 0; i < photos.length; i++){
@@ -232,13 +233,11 @@ require([   "js/meetup.tools.js",
 
         Promise.all(promises)
             .then(result => {
-                console.log(result);
                 $("#loading_text_container").append("<p id='packing_text'>Packing</p>")
                 zip_file.generateAsync({type:"blob"})
                    .then(function(content) {
                         // see FileSaver.js
                         saveAs(content, "photos.zip");
-                        console.log("saveAs(content, 'photos.zip');");
                    });
             },
             failure_reason => {
@@ -261,7 +260,6 @@ require([   "js/meetup.tools.js",
 
         prepare_dialog();
 
-
         $( "#meetup_login_button" ).click(function() {
             // Main Entry point
             var consumer_key = "67lqbd3gqb4kmfrhm526ua5bke";
@@ -273,6 +271,12 @@ require([   "js/meetup.tools.js",
 
         main();
     });
+
+    function go_to_second_step(){
+        $('html, body').animate({
+            scrollTop: $("#second_step_header").offset().top
+        }, 2000);
+    }
 
     // From overflow.com/questions/3656592/how-to-programmatically-disable-page-scrolling-with-jquery
     function disable_scrolling(){
@@ -302,7 +306,7 @@ require([   "js/meetup.tools.js",
         $(".full_screen_overlay").css("display","");
     }
 
-    function close_dialog(){
+    function close_dialog( ){
         restore_scrolling();
         $(".full_screen_overlay").css("display","none");
     }
