@@ -14,6 +14,7 @@
         <!-- CSS styles -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
+        <link rel="stylesheet" href="meetup_downloader.css">
 
         <!-- Generic Javascript Libs -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -23,152 +24,6 @@
         <script type="text/javascript" src="lib/FileSaver.js"></script>
         <script data-main = "main.js" src="lib/require.js"></script>
 
-        <style>
-            .numbered_header {
-                color: #FF0000;
-            }
-
-            h4 {
-                font-family: 'Pacifico', cursive;
-            }
-
-            h4::first-letter {
-                font-size: 200%;
-            }
-
-            p {
-                font-family: 'Source Sans Pro', sans-serif;
-                font-size: 140%;
-            }
-
-             .mybutton {
-                font-family: 'Pacifico', cursive;
-                font-size: 140%;
-                color: #FF0000;
-                border: 1px solid #FF0000;
-                background-color: #FFFFFF;
-                border-radius: 4px;
-                margin: auto;
-            }
-
-            .mybutton:hover{
-                color: #FFFFFF;
-                background-color: #FF0000;
-                border-color: #FF0000;
-            }
-
-            .is-disabled {
-                opacity: .5;
-                pointer-events: none;
-                filter: grayscale(50%);
-            }
-
-            .selectable_info_cell > p{
-                font-size: 110%;
-                margin: 0px 10px 0px 10px;
-            }
-
-            .selectable_info_cell:hover {
-                   background-color: #ef9694;
-            }
-
-            .selectable_info_cell.selected {
-                background-color: #ef9694;
-            }
-
-            .info_cell_line{
-                margin: 5px 0px 0px 5px;
-            }
-
-            .cell_table {
-                border: 1px solid #FF0000;/*#777777;*/
-                border-radius: 4px;
-                margin: auto;
-            }
-
-             /*http://www.corelangs.com/css/box/fulloverlay.html*/
-            .full_screen_overlay {
-                position:fixed;
-                top:0;
-                left:0;
-                background:rgba(50,50,50,0.6);
-                z-index:5;
-                width:100%;
-                height:100%;
-            }
-
-            .dialog_button {
-                text-align: center;
-                width: 100px;
-                text-align: center;
-                position: relative;
-                top: 140px;
-                font-size: 110%;
-            }
-
-            .dialog_text {
-                position: absolute;
-                margin-top: 30px;
-                margin-left: 25px;
-                margin-right: 25px;
-            }
-
-            .dialog_window {
-                font-family: 'Source Sans Pro', sans-serif;
-                font-size: 130%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 400px;
-                height: 200px;
-                border: 2px solid #FF0000;
-                background-color: #FFFFFF;
-                border-radius: 12px;
-                margin: auto;
-            }
-
-            .right_copyright{
-                text-align: right;
-                font-size: 100%;
-            }
-
-            .left_copyright  p {
-                text-align: left;
-                margin-bottom: 0px;
-                font-size: 100%;
-            }
-
-            /* for the ellipsis movement
-                got from: http://stackoverflow.com/questions/13014808/is-there-anyway-to-animate-an-ellipsis-with-css-animations
-            */
-            .loading {
-              font-size: 30px;
-            }
-
-            .loading:after {
-              overflow: hidden;
-              display: inline-block;
-              vertical-align: bottom;
-              -webkit-animation: ellipsis steps(4,end) 900ms infinite;
-              animation: ellipsis steps(4,end) 4s infinite;
-              content: "\2026"; /* ascii code for the ellipsis character */
-              width: 0px;
-            }
-
-            @keyframes ellipsis {
-              to {
-                width: 1.2em;
-              }
-            }
-
-            @-webkit-keyframes ellipsis {
-              to {
-                width: 1.2em;
-              }
-            }
-
-        </style>
     </head>
 
     <body>
@@ -176,6 +31,7 @@
             <div class="row">
                <div class="twelve columns" >
                     <picture>
+                        <source type="image/svg+xml" srcset="img/meetup.svg">
                         <source srcset="img/header.big.png" media="(min-width: 1000px)">
                         <source srcset="img/header.med.png" media="(min-width: 540px)">
                         <source srcset="img/header.sma.png" media="(min-width: 0px)">
@@ -263,10 +119,12 @@
                 </div>
                 <div class="five columns" > <p></p></div>
             </div>
+            <hr>
         </div>
 
         <!-- hidden thanks -->
         <div class="container" style="display:none" id="thanks_page">
+            <hr>
             <div class="row" >
                 <div class="twelve columns" style="text-align:center;margin-top:30px;">
                     <h4><span class="numbered_header">Thanks</span> for using Meetup Photo Downloader!</h4>
@@ -276,7 +134,6 @@
 
         <!-- Copyright -->
         <div class="container is-disabled">
-            <hr>
             <div class="row" >
                 <div class="six columns left_copyright">
                     <p> &copy; Víctor Gil </p>
