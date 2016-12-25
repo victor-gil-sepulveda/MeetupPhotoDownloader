@@ -89,6 +89,11 @@ require([   "js/meetup.tools.js",
 
     function main(){
         if(window.location.hash) {
+            // Go to the second step
+            $('html, body').animate({
+                scrollTop: $("#second_step_header").offset().top
+            }, 2000);
+
             // Deactivate meetup login button
             $( "#meetup_login_button").addClass('is-disabled');
 
